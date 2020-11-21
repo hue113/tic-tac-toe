@@ -11,8 +11,9 @@ class Square extends Component {
 
     render() {
         return (
-            // learn to pass a prop from a parent Board component to a child Square component
-            // change this.props.value --> this.state.value
+            // 01-props: learn to pass a prop from a parent Board component to a child Square component
+            // 02-state: change this.props.value --> this.state.value
+            // That means: Square maintains its state, Board only render <Square />; that's why we don't need to use props.value 
             <button className="square" onClick={ () => this.setState({value: 'X'}) }>
                 {this.state.value}
             </button>
