@@ -22,7 +22,7 @@ class Board extends Component {
 
         // 06: Check winner before determining who goes next
         // Note: Boolean (function ()) = true if function doesn't return null
-        // Boolean (square[i]) = true if square[i] is not null
+        // Boolean (square[i]) = true if square[i] is not null -- this will check whether square already store a value (X/O); bz player cannot overwrite with new value on same square
         if (calculateWinner(squares) || squares[i]) {       
           return;
         }
