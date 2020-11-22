@@ -2,65 +2,24 @@ import React, { Component } from 'react';
 import './Board.css';
 import Square from './Square';
 
-
 class Board extends Component {
-    // 03-lift-state-up: Add a constructor to the Board
-    // set the Board’s initial state to contain an array of 9 nulls (corresponding to the 9 squares)
-    // 05-taking-turns: set the first move to be “X” by default
-    constructor(props) {
-        super(props);
-        this.state = {
-          squares: Array(9).fill(null),
-          xisNext: true,
-        };
-    }
-
-    // Add function handleClick
-    // 05: Use boolean xIsNext to determine who goes next
-    handleClick(i) {
-        const squares = this.state.squares.slice();
-
-        // 06: Check winner before determining who goes next
-        // Note: Boolean (function ()) = true if function doesn't return null
-        // Boolean (square[i]) = true if square[i] is not null
-        if (calculateWinner(squares) || squares[i]) {       
-          return;
-        }
-
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-          squares: squares,
-          xIsNext: !this.state.xIsNext,
-        });
-    }
-
-    // In 02-state, X is determined by Square’s own state
-    // This is why Square ignores the value prop passed to it by the Board
-    // Now, we use props again and pass down two props from Board to Square: value & onClick
+    // 07: lift state up to Game --> Delete constructor in Board
+    // move handleClick() to Game
+    // use props to communicate
     renderSquare(i) {
         return (
             <Square 
-                value={this.state.squares[i]}
-                onClick={() => this.handleClick(i)}
+                value={this.props.squares[i]}
+                onClick={() => this.props.onClick(i)}
             />
         );
     }
 
     render() {
-        // 05: change status to display which player has the next turn        
-        const winner = calculateWinner(this.state.squares);
-        let status;
-        // 06: Check winner, if not,  determine who goes next
-        // winner = true if calculateWinner(this.state.squares) NOT return null
-        if (winner) {
-            status = 'Winner: ' + winner;
-        } else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
+        // 07: move status up to Game
 
         return (
-            <div>
-                <div className="status">{status}</div>
+            <div className="board">
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
@@ -80,30 +39,6 @@ class Board extends Component {
         );
     }
 
-    
 }
-
-
-// helper function
-function calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];      // X or O
-      }
-    }
-    return null;
-}
-  
 
 export default Board;
