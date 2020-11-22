@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import './Game.css';
 import Board from './Board';
 
 class Game extends Component {
   // 07: to track past moves (history) --> we need to move state up to App by adding constructor in App
   // This gives App full control over Board’s data, and lets it instruct Board to render previous turns from the history
-  // history is an array that store all square objects. Each square object is one move
+  // 08: history is an array that store all square objects. Each square object is one move
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +39,17 @@ class Game extends Component {
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
 
+    const moves = history.map((step, move) => {
+      const desc = move ?
+        'Go to move #' + move :
+        'Go to game start';
+      return (
+        <li>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
+
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
@@ -47,15 +59,15 @@ class Game extends Component {
 
     return (
         <div className="game">
-            <div className="game-info">
-              <div>{status}</div>
-              <ol>{/* TODO */}</ol>
-            </div>
             <div className="game-board">
               <Board 
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)} 
               />
+            </div>
+            <div className="game-info">
+              <div>{status}</div>
+              <ol>{moves}</ol>
             </div>
         </div>
     );
