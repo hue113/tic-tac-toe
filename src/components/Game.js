@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Board from './Board';
 
 class Game extends Component {
-// 07: to track past moves (history) --> we need to move state up to App by adding constructor in App
+  // 07: to track past moves (history) --> we need to move state up to App by adding constructor in App
   // This gives App full control over Board’s data, and lets it instruct Board to render previous turns from the history
+  // history is an array that store all square objects. Each square object is one move
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +26,7 @@ class Game extends Component {
 
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
-      history: history.concat([{
+      history: history.concat([{      // use concat(), not push() --> because concat doesn’t mutate the original array
         squares: squares
       }]),
       xIsNext: !this.state.xIsNext
