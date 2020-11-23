@@ -1,6 +1,39 @@
 .game {
     margin: 20px;
 }
+.game-title {
+    color: var(--primary-color);
+    font-size: 3rem;
+    font-weight: bold;    
+    text-align: center;
+    margin: 20px;
+}
 .game-info {
+    font-size: 1.8rem;
     margin-top: 20px;
+}
+.game-info ol{
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    list-style: none;
+}
+.game-info button{
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.3rem 0.8rem;
+    margin: 2px 0;
+    width: 130px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1.3rem;
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 0 0 0.5px rgba(0, 0, 0, 0.4);
+}
+.game-info span{
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
 }

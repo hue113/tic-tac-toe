@@ -1,9 +1,12 @@
-.board-row:after {
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* .board-row:after {
     clear: both;
     content: "";
     display: table;
-}
+} */
   
-.status {
-    margin-bottom: 10px;
-}

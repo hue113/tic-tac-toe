@@ -75,6 +75,7 @@ class Game extends Component {
 
     return (
         <div className="game">
+            <div className="game-title"> Tic Tac Toe</div>
             <div className="game-board">
               <Board 
                 squares={current.squares}
@@ -82,7 +83,7 @@ class Game extends Component {
               />
             </div>
             <div className="game-info">
-              <div>{status}</div>
+              <span>{status}</span>
               <ol>{moves}</ol>
             </div>
         </div>
